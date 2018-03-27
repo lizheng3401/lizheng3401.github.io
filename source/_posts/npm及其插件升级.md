@@ -27,4 +27,4 @@ npm update vue -g
 ```Bash
 npm update axios --save
 ```
-
+[欢迎访问我的博客了解更多]( http://lizheng3401.github.io/2018/03/27/npm及其插件升级/)
