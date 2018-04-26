@@ -10,7 +10,7 @@ Redis是一种键值对形式的分布式缓存数据库
 <!--more -->
 
 
-## 拉去镜像
+## 拉取镜像
 
 在docker-compose.yml文件中添加如下配置:
 ```yaml
@@ -52,11 +52,51 @@ docker exec -it 容器ID redis-cli
 这里就不在重述
 ## redis配置临时密码
 
+首先查看redis有没有配置临时密码，无密码会返回这个
 ```Bash
-
+127.0.0.1:6379> config get requirepass
+1) "requirepass"
+2) ""
 ```
 
+然后设置密码， 1234
+```Bash
+127.0.0.1:6379> config set requirepass 1234
+```
 
+再次查看当前redis就提示需要密码：
+```Bash
+127.0.0.1:6379> config get requirepass
+(error) NOAUTH Authentication required.
+```
 
+## python的redis数据库连接——插件库(redis)
 
+### 数据库连接，默认执行前后数据库连接然后释放连接
+```Bash
+r = redis.Redis(host='0.0.0.0', port=6379, db=0, password="1234")
+r.set('name', 'test')
+print(r.get('name'))
+```
 
+### 数据库连接池配置
+```Bash
+pool = redis.ConnectionPool(host="0.0.0.0", port=6379, db=0, password="1234")
+r = redis.Redis(connection_pool=pool)
+r.set("age", "16")
+r.get("age")
+```
+
+### 数据库的事务性操作
+
+redis默认在执行每次请求都会创建（连接池申请链接）和断开（归还连接池）一次连接操作，如果想要再一次请求中指定多个命令，则可以使用pipline实现一次请求指定多个命令，并且默认情况下一次pipline是原子性操作。
+
+```Bash
+pool = redis.ConnectionPool(host='0.0.0.0', port=6379)
+r = redis.Redis(connection_pool=pool)
+pipe = r.pipeline(transaction=True)
+r.set('name', 'python')
+r.set('age', '18')
+pipe.execute()
+```
+[欢迎访问我的博客了解更多]((http://lizheng3401.github.io/2018/04/26/Redis的入门/)
