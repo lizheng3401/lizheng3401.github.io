@@ -27,8 +27,8 @@
           data-order="random"
           data-list-folded="true"
           data-preload="none"
-          data-id="725874161"
-          data-server="netease"
+          data-id="2036181683"
+          data-server="tencent"
           data-type="playlist">
       </div>
   </div>
