@@ -21,7 +21,7 @@
       {% elseif theme.add_this_id %}
         {% include '_partials/share/add-this.swig' %}
       {% endif %}
-    </div>
+    </div><!--
      <div class="aplayer"
           data-autoplay="true"
           data-order="random"
@@ -30,7 +30,7 @@
           data-id="2036181683"
           data-server="tencent"
           data-type="playlist">
-      </div>
+      </div>-->
   </div>
 
 {% endblock %}

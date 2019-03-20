@@ -12,9 +12,11 @@
   <title>{% block title %}{% endblock %}</title>
   {% include '_third-party/analytics/index.swig' %}
   {% include '_scripts/noscript.swig' %}
+  <!--
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer@1.7/dist/APlayer.min.css">
   <script src="https://cdn.jsdelivr.net/npm/aplayer@1.7/dist/APlayer.min.js"></script>
   <script src="https://unpkg.com/meting@1.1.1/dist/Meting.min.js"></script>
+  -->
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="{{ page.lang || page.language || config.language }}">
@@ -102,6 +104,6 @@
 </body>
 
 <!-- 页面点击小红心 -->
-<script type="text/javascript" src="/js/src/love.js"></script>
+<!--<script type="text/javascript" src="/js/src/love.js"></script>-->
 
 </html>
